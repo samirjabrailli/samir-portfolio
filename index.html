@@ -241,8 +241,51 @@
     #projects .project { align-content: stretch; grid-template-rows: auto 1fr; }
   }
   @media (min-width: 1100px) {
-    main.wrap { grid-template-columns: minmax(0, 5fr) minmax(0, 8fr); }
+  #projects.cards.wide {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: start;
+    gap: 18px;
   }
+
+  #projects .project {
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+    align-self: start;
+    align-content: start;
+    grid-template-rows: auto auto;
+    gap: 10px;
+    padding: 12px;
+  }
+
+  #projects .thumb.shot {
+    height: 140px;
+  }
+
+  #projects .project .body {
+    padding: 8px 2px;
+    gap: 7px;
+  }
+
+  #projects .ptop h3 {
+    font-size: 20px;
+  }
+
+  #projects .pdesc {
+    font-size: 14px;
+    line-height: 1.35;
+  }
+
+  #projects .pnote {
+    min-height: 0;
+    font-size: 12px;
+  }
+
+  #projects .pbtn {
+    font-size: 15px;
+    padding: 9px 12px;
+  }
+}
   @media (min-width: 640px) {
     #certs .card { border-radius: 14px; box-shadow: var(--soft-shadow); background: var(--panel); }
   }
@@ -334,24 +377,71 @@
   }
 
 
-  /* ---------- sütun düzülüşü ---------- */
-  main.wrap { display: flex; flex-direction: column; }
-  .col { display: contents; }
-  .sec h2 { scroll-margin-top: 20px; }
-  @media (min-width: 640px) {
-    main.wrap { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 20px; align-items: start; }
-    .col { display: flex; flex-direction: column; gap: 20px; min-width: 0; }
-    .form-sec { grid-column: 1 / -1; }
-    .sec { padding: clamp(18px, 2.6vw, 34px); }
-    .sec h2 { font-size: clamp(28px, 3.6vw, 44px); }
+  
+/* ---------- desktop Flexbox düzülüşü ---------- */
+
+main.wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.col {
+  display: contents;
+}
+
+.sec h2 {
+  scroll-margin-top: 20px;
+}
+
+/* Mobil responsivliyə toxunulmur */
+@media (min-width: 720px) {
+
+  :root {
+    --wrapw: 1180px;
   }
-  @media (min-width: 860px) {
-    :root { --wrapw: 1180px; }
-    main.wrap { gap: 22px 26px; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
-    .col { gap: 22px; }
-    .sec { padding: clamp(22px, 4.5vw, 40px); }
-    .sec h2 { font-size: clamp(34px, 6vw, 48px); }
+
+  main.wrap {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 22px 26px;
   }
+
+  .col {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    min-width: 0;
+  }
+
+  .colL {
+    flex: 5 1 0;
+  }
+
+  .colR {
+    flex: 7 1 0;
+  }
+
+  .col > .sec {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .form-sec {
+    flex: 0 0 100%;
+    width: 100%;
+  }
+
+  .sec {
+    padding: clamp(22px, 3vw, 40px);
+  }
+
+  .sec h2 {
+    font-size: clamp(34px, 4vw, 48px);
+  }
+}
+
 
   .rise { opacity: .3; transform: translateY(72px); transition: opacity .8s ease, transform .9s cubic-bezier(.2, .7, .2, 1); }
   .rise.in { opacity: 1; transform: none; }
@@ -380,6 +470,60 @@
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { transition: none !important; }
   }
+
+  @media (min-width: 1100px) {
+  #projects .project {
+    padding: 10px;
+    gap: 8px;
+    align-content: start;
+    grid-template-rows: auto auto;
+  }
+
+  #projects .thumb.shot {
+    height: 110px;
+  }
+
+  #projects .project .body {
+    padding: 5px 2px;
+    gap: 6px;
+  }
+
+  #projects .ptop h3 {
+    font-size: 18px;
+    line-height: 1.2;
+  }
+
+  #projects .pdesc {
+    font-size: 13px;
+    line-height: 1.35;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+  }
+
+  #projects .plink {
+    font-size: 12px;
+  }
+
+  #projects .tags {
+    gap: 5px;
+  }
+
+  #projects .tags span {
+    font-size: 11px;
+    padding: 3px 7px;
+  }
+
+  #projects .pbtn {
+    font-size: 14px;
+    padding: 8px 10px;
+  }
+
+  #projects .pnote {
+    display: none;
+  }
+}
 </style>
 
 <canvas id="gl" aria-hidden="true"></canvas>
